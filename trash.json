@@ -1,0 +1,40 @@
+{
+  "debug": [{ "https://semalt.net/api/v1/example/test/? -> total": 0.00012302398681640625 }],
+  "error": null,
+  "result": {
+    "sitemap": [
+      {
+        "path": "http://savetubevideo.com/sitemap.xml",
+        "lastSubmitted": "2019-06-07T08:48:32.279Z",
+        "lastCheck": "2019-06-08T09:12:11.123Z",
+        "urls": 10000000,
+        "isPending": true,
+        "isSitemapsIndex": true,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "path": "http://savetubevideo.com/video.xml",
+        "lastSubmitted": "2019-12-06T09:31:43.263Z",
+        "lastCheck": "2019-06-09T06:56:32.333Z",
+        "urls": 20000,
+        "isPending": true,
+        "isSitemapsIndex": false,
+        "warnings": 6,
+        "errors": 10
+      },
+      {
+        "path": "http://savetubevideo.com/test.php",
+        "lastSubmitted": "2020-01-19T05:18:11.221Z",
+        "lastCheck": "2020-01-20T01:01:12.213Z",
+        "urls": 500000,
+        "isPending": true,
+        "isSitemapsIndex": false,
+        "warnings": 0,
+        "errors": 0
+      }
+    ]
+  },
+  "post_action": null,
+  "version": "e67172a837688a5d0450b76fed8085a359abf2cf"
+}

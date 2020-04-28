@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kharchenko Ivan</title>
+    <link rel="shortcut icon" href="./src/icon/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header of table -->
+      <header class="header">
+        <div class="header__text">
+          <p>
+            Sumbmittet sitemaps
+          </p>
+          <img class="header__info" src="./src/icon/filter-info.png" alt="info" />
+        </div>
+        <div class="header__right">
+          <div class="header__right-item">
+            <p>Recrawl sitemap</p>
+          </div>
+
+          <div class="header__right-item">
+            <p>Remove sitemap</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Table -->
+      <div class="table">
+        <!-- Table control -->
+        <form id="filtersId" class="filter" action="">
+          <p class="filter__label">Filters</p>
+          <div class="filter__style">
+            <input id="urlId" class="filter__url" type="text" placeholder="URL or its part" />
+            <div id="urlPopUpId" class="filter__url-pop">
+              <ul class="filter__list-pop">
+                <li class="filter__item-pop">
+                  <input name="url-radio" class="filter__radio" type="radio" value="notContain" />
+                  <label for=""> Sitemap doesn't contain</label>
+                </li>
+                <li class="filter__item-pop">
+                  <input name="url-radio" class="filter__radio" type="radio" value="Contain" />
+                  <label for="">Sitemap contains</label>
+                </li>
+                <li class="filter__item-pop">
+                  <input name="url-radio" class="filter__radio" type="radio" value="Exact" />
+                  <label for="">Exact match</label>
+                </li>
+              </ul>
+
+              <div class="filter__btns">
+                <button id="restBtn" class="filter__reset-btn">Reset</button>
+                <button id="applyBtn" class="filter__apply-btn">Apply</button>
+              </div>
+            </div>
+            <select class="filter__type" id="typeId">
+              <option value="1">All types</option>
+              <option value="2">Type 2</option>
+              <option value="3">Type 3</option>
+            </select>
+
+            <select class="filter__submitted" id="submittedId">
+              <option value="1">Submitted</option>
+              <option value="2">Type 2</option>
+              <option value="3">Type 3</option>
+            </select>
+
+            <img class="filter__calendar-img" src="./src/icon/filter-calendar.png" alt="" />
+            <input class="filter__calendar" type="date" id="calendarId" />
+
+            <input id="statusId" class="filter__status" placeholder="All sitemaps"></input>
+            <div id="statusPopUpId" class="filter__status-pop">
+              <p class="filter__errors-pop" value="success">
+                Success
+              </p>
+              <p class="filter__errors-pop" value="errors">
+                Errors
+              </p>
+              <p class="filter__errors-pop" value="all">
+                All sitemaps
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <!-- Table result -->
+        <ul class="result" id="resultId">
+          <li class="result__row result__row-header">
+            <div class="result_checkbox-wrapper">
+              <input class="result__checkbox" type="checkbox" />
+            </div>
+            <div class="result__sitemap">
+              <p class="result__sitemap-color">Sitemap (<span id="sitemap-count">1</span>)</p>
+            </div>
+            <div class="result__col">
+              <p>Type</p>
+            </div>
+            <div class="result__col">
+              <p>Submitted</p>
+            </div>
+            <div class="result__col">
+              <p>Last check</p>
+            </div>
+            <div class="result__col">
+              <p>Status</p>
+            </div>
+            <div class="result__col">
+              <p>URLs</p>
+            </div>
+            <div class="result__col">
+              <p>Recrawl sitemap</p>
+            </div>
+            <div class="result__col">
+              <p>Remove sitemap</p>
+            </div>
+          </li>
+
+          <li class="result__row">
+            <div class="result_checkbox-wrapper">
+              <input class="result__checkbox" type="checkbox" />
+            </div>
+            <div class="result__sitemap">
+              <p>
+                /sitemap
+                <a class="result__sitemap-img" href="google.com" target="_blank">
+                  <img src="./src/icon/filter-sitemap.png" alt="sitemap" />
+                </a>
+              </p>
+            </div>
+            <div class="result__col">
+              <p>Sitemap index</p>
+            </div>
+            <div class="result__col">
+              <p>Feb 10, 2019</p>
+            </div>
+            <div class="result__col">
+              <p>Feb 20, 2019</p>
+            </div>
+            <div class="result__col">
+              <p>Success</p>
+            </div>
+            <div class="result__col">
+              <p>100,000,00</p>
+            </div>
+            <div class="result__col">
+              <button class="result__recrewl-btn">Recrawl</button>
+            </div>
+            <div class="result__col">
+              <button name="removeId" class="result__remove-btn">
+                <p class="result__remove-warning">Remove from Search Control</p>
+                <img class="result__remove-hover" src="./src/icon/filter-remove-hover.png" alt="remove" />
+                <img class="result__remove-img" src="./src/icon/filter-remove.png" alt="remove" />
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="./src/js/main.js"></script>
+  </body>
+</html>
