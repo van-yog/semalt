@@ -1,56 +1,34 @@
 "use strict";
 
-let response = {
-  result: {
-    sitemap: [
-      {
-        path: "http://savetubevideo.com/sitemap.xml",
-        lastSubmitted: "2019-06-07T08:48:32.279Z",
-        lastCheck: "2019-06-08T09:12:11.123Z",
-        urls: 10000000,
-        isPending: true,
-        isSitemapsIndex: true,
-        warnings: 0,
-        errors: 0,
-      },
-      {
-        path: "http://savetubevideo.com/video.xml",
-        lastSubmitted: "2019-12-06T09:31:43.263Z",
-        lastCheck: "2019-06-09T06:56:32.333Z",
-        urls: 20000,
-        isPending: true,
-        isSitemapsIndex: false,
-        warnings: 6,
-        errors: 10,
-      },
-      {
-        path: "http://savetubevideo.com/test.php",
-        lastSubmitted: "2020-01-19T05:18:11.221Z",
-        lastCheck: "2020-01-20T01:01:12.213Z",
-        urls: 500000,
-        isPending: true,
-        isSitemapsIndex: false,
-        warnings: 0,
-        errors: 0,
-      },
-    ],
-  },
-};
-
 let isOpenPopUp = false;
+let sitemaps = [];
 
-let url = "https://semalt.tech/dev/api/v1/example/test/";
+let url = "https://mediglobus.ru/api/";
+
 fetch(url)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
-    console.log(data);
+    for (let key of data.result.sitemap) {
+      sitemaps.push(key);
+    }
+    startCreateTable(sitemaps);
+
+    // Remove ROW
+    setTimeout(() => {
+      let removeBtn = document.querySelectorAll(".result__remove-btn");
+
+      removeBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.target.parentElement.parentElement.parentElement.classList.add("result__remove");
+          setTimeout(() => {
+            e.target.parentElement.parentElement.parentElement.remove();
+          }, 500);
+        });
+      });
+    }, 500);
   });
-
-// ccess to fetch at 'https://semalt.tech/dev/api/v1/example/test/' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
-
-let sitemaps = response.result.sitemap;
 
 // Pop Up for URLS
 let urlId = document.querySelector("#urlId");
@@ -70,25 +48,8 @@ statusId.addEventListener("focus", showStatusPopUp);
 let statusPopUpId = document.querySelector("#statusPopUpId");
 statusPopUpId.addEventListener("click", setStatusPopUp);
 
-// Create and format RESPONSE DATA
-startCreateTable(sitemaps);
-
-// Remove ROW
-let removeBtn = document.querySelectorAll(".result__remove-btn");
-console.log("removeBtn", removeBtn);
-
-removeBtn.forEach((btn) => {
-  console.log("dsfs");
-  btn.addEventListener("click", (e) => {
-    e.target.parentElement.parentElement.parentElement.classList.add("result__remove");
-    setTimeout(() => {
-      e.target.parentElement.parentElement.parentElement.remove();
-    }, 500);
-  });
-});
-
-function startCreateTable(sitemaps) {
-  sitemaps.forEach((sitemap, index) => createRow(sitemap, index));
+function startCreateTable(s) {
+  s.forEach((sitemap, index) => createRow(sitemap, index));
 }
 
 function createRow(sitemap, index) {
@@ -113,8 +74,6 @@ function createRow(sitemap, index) {
 
   let pathA = document.createElement("a");
   pathA.href = sitemap.path;
-  console.log("createRow -> pathA.src", pathA.src);
-  console.log("createRow -> sitemap.path", sitemap.path);
 
   pathA.setAttribute("target", "_blank");
   pathA.classList.add("result__sitemap-img");
@@ -257,21 +216,15 @@ function applyPopUp(e) {
   radio.forEach((elem) => {
     if (elem.checked) filter = elem.value;
   });
-  console.log("applyPopUp -> radio", radio);
-
-  let containFilter = [];
 
   // Находим все данные полученные с сервера, которые уже отсортированы по Status
   let li = document.querySelectorAll(".data-from-server");
-  console.log("applyPopUp -> filteredByStatus", li);
 
   let urlFilterInput = document.querySelector("#urlId");
   let valueOfFilter = urlFilterInput.value;
-  console.log("applyPopUp -> valueOfFilter", valueOfFilter);
 
   for (let i = 0; i < li.length; i++) {
     if (li[i].classList.contains("hide")) {
-      console.log(" ЭТОТ ЭЛЕМЕНТ СКРЫТ ", li[i]);
       continue;
     }
 
@@ -323,7 +276,6 @@ function showFilteredStatus(status) {
 
 function removeRow(removeBtn) {
   removeBtn.forEach((btn) => {
-    console.log("dsfs");
     btn.addEventListener("click", (e) => {
       e.target.parentElement.parentElement.parentElement.classList.add("result__remove");
       setTimeout(() => {
@@ -339,6 +291,4 @@ function useFilter() {
   radio.forEach((elem) => {
     if (elem.checked) filter = elem.value;
   });
-  console.log("applyPopUp -> radio", radio);
-  console.log("applyPopUp -> filter", filter);
 }
