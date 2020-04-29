@@ -37,49 +37,63 @@ let response = {
   },
 };
 
-function checkStatus(errors) {
-  console.log("checkStatus -> errors", errors);
+let isOpenPopUp = false;
 
-  if (errors === 0) return "Success";
-  else return `${errors} errors`;
-}
+let url = "https://semalt.tech/dev/api/v1/example/test/";
+fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
 
-function formatUrls(count) {
-  return count.toLocaleString("en-IN");
-}
-
-formatDate(response.result.sitemap[1].lastSubmitted);
-
-function formatDate(date) {
-  let d = new Date(date);
-  console.log(d.toDateString());
-  let dates = d.toDateString().split(" ");
-  return `${dates[1]} ${dates[2]},<br> ${dates[3]}`;
-}
-
-formatPath(response.result.sitemap[1].path, "http://savetubevideo.com");
-
-function formatPath(path, pathDel = "http://savetubevideo.com") {
-  if (!path) {
-    console.log("No path to format");
-    return;
-  }
-  console.log(path.slice(pathDel.length, path.length + 1));
-  return path.slice(pathDel.length, path.length + 1);
-}
+// ccess to fetch at 'https://semalt.tech/dev/api/v1/example/test/' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 
 let sitemaps = response.result.sitemap;
-let url = "https://semalt.tech/dev/api/v1/example/test/";
 
-console.dir(sitemaps);
+// Pop Up for URLS
+let urlId = document.querySelector("#urlId");
+urlId.addEventListener("focus", showUrlPopUp);
+urlId.addEventListener("change", useFilter);
 
-let result = document.querySelector("#resultId");
+let restBtn = document.querySelector("#restBtn");
+restBtn.addEventListener("click", resetPopUp);
 
-sitemaps.forEach((sitemap, index) => createRow(sitemap, index));
+let applyBtn = document.querySelector("#applyBtn");
+applyBtn.addEventListener("click", applyPopUp);
+
+// Pop Up for STATUS
+let statusId = document.querySelector("#statusId");
+statusId.addEventListener("focus", showStatusPopUp);
+
+let statusPopUpId = document.querySelector("#statusPopUpId");
+statusPopUpId.addEventListener("click", setStatusPopUp);
+
+// Create and format RESPONSE DATA
+startCreateTable(sitemaps);
+
+// Remove ROW
+let removeBtn = document.querySelectorAll(".result__remove-btn");
+console.log("removeBtn", removeBtn);
+
+removeBtn.forEach((btn) => {
+  console.log("dsfs");
+  btn.addEventListener("click", (e) => {
+    e.target.parentElement.parentElement.parentElement.classList.add("result__remove");
+    setTimeout(() => {
+      e.target.parentElement.parentElement.parentElement.remove();
+    }, 500);
+  });
+});
+
+function startCreateTable(sitemaps) {
+  sitemaps.forEach((sitemap, index) => createRow(sitemap, index));
+}
 
 function createRow(sitemap, index) {
   let li = document.createElement("li");
-  li.classList.add("result__row");
+  li.classList.add("result__row", "data-from-server");
   li.setAttribute("data-row-id", index + 1);
 
   //   Create checkbox
@@ -133,7 +147,7 @@ function createRow(sitemap, index) {
   let errorStatus = checkStatus(sitemap.errors);
   let errors = cerateData(errorStatus);
   errors.classList.add("result__col");
-  let errorStyle = errorStatus === "Success" ? "result__seccess" : "result__errors";
+  let errorStyle = errorStatus === "Success" ? "result__success" : "result__errors";
   errors.classList.add(errorStyle);
   errorStatus === "Success"
     ? li.setAttribute("data-row-status", "Success")
@@ -151,7 +165,7 @@ function createRow(sitemap, index) {
   recrawlDiv.classList.add("result__col");
 
   let recrawlBtn = document.createElement("button");
-  recrawlBtn.classList.add("result__recrewl-btn");
+  recrawlBtn.classList.add("result__recrawl-btn");
   recrawlBtn.innerText = "Recrawl";
 
   recrawlDiv.append(recrawlBtn);
@@ -181,6 +195,7 @@ function createRow(sitemap, index) {
   removeBtnDiv.append(removeBtn);
   li.append(removeBtnDiv);
 
+  let result = document.querySelector("#resultId");
   result.append(li);
 }
 
@@ -190,66 +205,115 @@ function cerateData(data) {
   return div;
 }
 
-let urlId = document.querySelector("#urlId");
+function checkStatus(errors) {
+  if (!errors) return "Success";
+  else return `${errors} errors`;
+}
 
-urlId.addEventListener("focus", () => {
+function formatUrls(count) {
+  return count.toLocaleString("en-IN");
+}
+
+function formatDate(date) {
+  let d = new Date(date);
+  let dates = d.toDateString().split(" ");
+
+  return `${dates[1]} ${dates[2]},<br> ${dates[3]}`;
+}
+
+function formatPath(path, pathDel = "http://savetubevideo.com") {
+  if (!path) {
+    console.log("No path to format");
+    return;
+  }
+  return path.slice(pathDel.length, path.length + 1);
+}
+
+function showUrlPopUp() {
   let popUp = document.querySelector("#urlPopUpId");
   popUp.classList.add("show");
-});
+}
 
-let restBtn = document.querySelector("#restBtn");
-restBtn.addEventListener("click", (e) => {
+function resetPopUp(e) {
   e.preventDefault();
+
   let radio = document.querySelectorAll("input[name='url-radio']");
   radio.forEach((r) => (r.checked = false));
+
   let popUp = document.querySelector("#urlPopUpId");
   popUp.classList.remove("show");
-  // console.log(radio);
-});
+}
 
-let applyBtn = document.querySelector("#applyBtn");
-applyBtn.addEventListener("click", (e) => {
-  console.log("Aply btn");
+function applyPopUp(e) {
   e.preventDefault();
 
-  let radio = document.querySelectorAll("input[name='url-radio']");
-  for (let i = 0; i < radio.length; i++) {
-    if (radio[i].checked) console.log(radio[i].value);
-  }
-
   let popUp = document.querySelector("#urlPopUpId");
   popUp.classList.remove("show");
-});
 
-// STATUS
+  let radio = document.querySelectorAll("input[name='url-radio']");
 
-let statusId = document.querySelector("#statusId");
-statusId.addEventListener("focus", () => {
+  // Ищем какой фильтр по URL установлен
+  let filter;
+  radio.forEach((elem) => {
+    if (elem.checked) filter = elem.value;
+  });
+  console.log("applyPopUp -> radio", radio);
+
+  let containFilter = [];
+
+  // Находим все данные полученные с сервера, которые уже отсортированы по Status
+  let li = document.querySelectorAll(".data-from-server");
+  console.log("applyPopUp -> filteredByStatus", li);
+
+  let urlFilterInput = document.querySelector("#urlId");
+  let valueOfFilter = urlFilterInput.value;
+  console.log("applyPopUp -> valueOfFilter", valueOfFilter);
+
+  for (let i = 0; i < li.length; i++) {
+    if (li[i].classList.contains("hide")) {
+      console.log(" ЭТОТ ЭЛЕМЕНТ СКРЫТ ", li[i]);
+      continue;
+    }
+
+    console.dir(li[i]);
+
+    if (filter === "notContain") {
+      let contain = sitemaps[i].path.includes(valueOfFilter);
+      if (contain) li[i].classList.add("hide");
+    }
+
+    if (filter === "Contain") {
+      let contain = sitemaps[i].path.includes(valueOfFilter);
+      if (!contain) li[i].classList.add("hide");
+    }
+
+    if (filter === "Exact" && sitemaps[i].path === valueOfFilter) {
+      li[i].classList.add("hide");
+    }
+  }
+}
+
+function showStatusPopUp() {
   let statusPopUpId = document.querySelector("#statusPopUpId");
   statusPopUpId.classList.add("show");
-});
+}
 
-let statusPopUpId = document.querySelector("#statusPopUpId");
-statusPopUpId.addEventListener("click", (e) => {
-  console.dir(e);
+function setStatusPopUp(e) {
   let statusId = document.querySelector("#statusId");
   statusId.value = e.target.innerText;
 
   e.target.parentElement.classList.remove("show");
-  console.log("statusId.value", statusId.value);
   showFilteredStatus(statusId.value);
-});
+}
 
 function showFilteredStatus(status) {
-  console.log("showFilteredStatus -> status", status);
-
   let li = document.querySelectorAll("[data-row-id");
-  console.log("showFilteredStatus -> li", li);
 
   if (status === "All sitemaps") {
     li.forEach((el) => el.classList.remove("hide"));
     return;
   }
+
   li.forEach((el) => {
     if (el.dataset.rowStatus === status) {
       el.classList.remove("hide");
@@ -257,14 +321,24 @@ function showFilteredStatus(status) {
   });
 }
 
-// Remove row
-let removeBtn = document.querySelectorAll(".result__remove-btn");
-
-removeBtn.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.target.parentElement.parentElement.parentElement.classList.add("result__remove");
-    setTimeout(() => {
-      e.target.parentElement.parentElement.parentElement.remove();
-    }, 500);
+function removeRow(removeBtn) {
+  removeBtn.forEach((btn) => {
+    console.log("dsfs");
+    btn.addEventListener("click", (e) => {
+      e.target.parentElement.parentElement.parentElement.classList.add("result__remove");
+      setTimeout(() => {
+        e.target.parentElement.parentElement.parentElement.remove();
+      }, 500);
+    });
   });
-});
+}
+
+function useFilter() {
+  let radio = document.querySelectorAll("input[name='url-radio']");
+  let filter;
+  radio.forEach((elem) => {
+    if (elem.checked) filter = elem.value;
+  });
+  console.log("applyPopUp -> radio", radio);
+  console.log("applyPopUp -> filter", filter);
+}

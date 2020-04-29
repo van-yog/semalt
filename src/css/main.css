@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #e5e5e5;
 }
 
@@ -9,6 +10,7 @@ p {
   margin: 0;
   padding: 0;
 }
+
 .container {
   width: 920px;
   margin: 30px auto;
@@ -19,24 +21,21 @@ p {
 }
 
 .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .header__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-weight: Bold;
   font-size: 20px;
   margin: 22px;
-  color: #37474f;
-}
-
-.filter__label {
-  margin-top: 13px;
-  margin-bottom: 5px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
   color: #37474f;
 }
 
@@ -47,6 +46,8 @@ p {
 }
 
 .header__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-right: 30px;
 }
@@ -64,10 +65,20 @@ p {
   border-bottom: 1px solid #c2cfe0;
 }
 
+.filter__label {
+  margin-top: 13px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #37474f;
+}
+
 .filter__url {
   background: #ffffff;
   border: 1px solid #c2cfe0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   height: 30px;
   width: 162px;
@@ -91,8 +102,10 @@ p {
   height: 179px;
   background: #ffffff;
   border: 1px solid #bac9db;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
+          box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
   border-radius: 5px;
   z-index: 5;
 }
@@ -116,10 +129,14 @@ p {
 }
 
 .filter__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 38px;
   padding: 0px 18px;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   justify-self: center;
 }
 
@@ -139,7 +156,8 @@ p {
 .filter__type {
   background: #ffffff;
   border: 1px solid #c2cfe0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   height: 30px;
   width: 162px;
@@ -153,7 +171,8 @@ p {
 .filter__submitted {
   background: #ffffff;
   border: 1px solid #c2cfe0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   height: 30px;
   width: 162px;
@@ -167,7 +186,8 @@ p {
 .filter__calendar {
   background: #ffffff;
   border: 1px solid #c2cfe0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   height: 30px;
   width: 162px;
@@ -185,7 +205,8 @@ p {
   display: inline-block;
   background: #ffffff;
   border: 1px solid #c2cfe0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   color: #34495d;
   padding-left: 17px;
@@ -213,15 +234,16 @@ p {
   width: 169px;
   background: #ffffff;
   border: 1px solid #bac9db;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
+          box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
   border-radius: 5px;
   z-index: 5;
 }
 
 .filter__errors-pop {
-  font-family: "Roboto";
-
+  font-family: "Roboto", sans-serif;
   padding: 11px 19px;
   font-size: 14px;
   line-height: 16px;
@@ -256,6 +278,8 @@ p {
 }
 
 .result__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: center;
   font-size: 14px;
@@ -265,6 +289,7 @@ p {
 
 .result__remove {
   opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
@@ -273,18 +298,23 @@ p {
 }
 
 .result__checkbox {
-  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .result__sitemap {
   width: 130px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   color: #0288d1;
 }
 
 .result__sitemap-color {
   width: 130px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   color: #34495d;
 }
 
@@ -294,7 +324,9 @@ p {
 
 .result__col {
   width: 100px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .result__recrawl-btn {
@@ -306,6 +338,7 @@ p {
   padding: 5px 12px;
   background-color: #ffffff;
   color: #0288d1;
+  -webkit-transition: 0.3s all ease-in-out;
   transition: 0.3s all ease-in-out;
 }
 
@@ -318,33 +351,8 @@ p {
   position: relative;
   padding: 0;
   border: 0;
-  background: white;
+  background: #ffffff;
   margin-top: 4px;
-}
-.result__remove-img {
-  position: relative;
-  z-index: 1;
-}
-
-.result__remove-hover {
-  position: absolute;
-  z-index: 2;
-  visibility: hidden;
-}
-.result__remove-warning {
-  content: "Remove from Search Control";
-  position: absolute;
-  visibility: hidden;
-  padding: 10px;
-  left: -205px;
-  top: 28px;
-  background: #37474f;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
-  border-radius: 5px;
-  font-size: 14px;
-  line-height: 16px;
-
-  color: #fafafa;
 }
 
 .result__remove-btn:hover .result__remove-hover {
@@ -361,6 +369,33 @@ p {
   visibility: visible;
 }
 
+.result__remove-img {
+  position: relative;
+  z-index: 1;
+}
+
+.result__remove-hover {
+  position: absolute;
+  z-index: 2;
+  visibility: hidden;
+}
+
+.result__remove-warning {
+  content: "Remove from Search Control";
+  position: absolute;
+  visibility: hidden;
+  padding: 10px;
+  left: -205px;
+  top: 28px;
+  background: #37474f;
+  -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
+          box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fafafa;
+}
+
 .show {
   display: block;
 }
@@ -368,3 +403,4 @@ p {
 .hide {
   display: none;
 }
+/*# sourceMappingURL=main.css.map */

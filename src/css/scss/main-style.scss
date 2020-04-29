@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $bg-color;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 920px;
+  margin: 30px auto;
+  background: $bg-color-1;
+  border: 1px solid $color-secondary;
+  border-radius: 5px;
+  font-family: $main-font;
+}

@@ -1,0 +1,129 @@
+.result {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result__success {
+  color: $color-success;
+}
+
+.result__errors {
+  color: $color-remove;
+}
+
+.result__row-header {
+  background-color: $bg-row-header;
+  font-weight: bold;
+  font-size: $font-size;
+  line-height: 16px;
+  color: $color-result;
+}
+
+.result__row {
+  display: flex;
+  text-align: center;
+  font-size: $font-size;
+  line-height: 16px;
+  height: 50px;
+}
+
+.result__remove {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.result_checkbox-wrapper {
+  margin: auto 10px auto 25px;
+}
+
+.result__checkbox {
+  transform: scale(1.2);
+}
+
+.result__sitemap {
+  width: 130px;
+  align-self: center;
+  color: $color-blue;
+}
+
+.result__sitemap-color {
+  width: 130px;
+  align-self: center;
+  color: $color-result;
+}
+
+.result__sitemap-img {
+  margin-left: 8px;
+}
+
+.result__col {
+  width: 100px;
+  align-self: center;
+}
+
+.result__recrawl-btn {
+  border: 1px solid $color-blue;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 5px 12px;
+  background-color: $bg-color-1;
+  color: $color-blue;
+  transition: 0.3s all ease-in-out;
+
+  &:hover {
+    background: $bg-recrawl-hover;
+    cursor: pointer;
+  }
+}
+
+.result__remove-btn {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: $bg-color-1;
+  margin-top: 4px;
+
+  &:hover .result__remove-hover {
+    visibility: visible;
+    cursor: pointer;
+  }
+
+  &:hover .result__remove-img {
+    visibility: hidden;
+    cursor: pointer;
+  }
+
+  &:hover .result__remove-warning {
+    visibility: visible;
+  }
+}
+
+.result__remove-img {
+  position: relative;
+  z-index: 1;
+}
+
+.result__remove-hover {
+  position: absolute;
+  z-index: 2;
+  visibility: hidden;
+}
+
+.result__remove-warning {
+  content: "Remove from Search Control";
+  position: absolute;
+  visibility: hidden;
+  padding: 10px;
+  left: -205px;
+  top: 28px;
+  background: $color-main;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
+  border-radius: 5px;
+  font-size: $font-size;
+  line-height: 16px;
+
+  color: $color-warning;
+}

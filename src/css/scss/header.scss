@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__text {
+  display: flex;
+  font-weight: Bold;
+  font-size: $font-size-bigger;
+  margin: 22px;
+  color: $color-main;
+}
+
+.header__info {
+  width: 16px;
+  height: auto;
+  margin: auto 9px;
+}
+
+.header__right {
+  display: flex;
+  margin-right: 30px;
+}
+
+.header__right-item {
+  margin: auto 13px;
+  color: $color-secondary;
+}

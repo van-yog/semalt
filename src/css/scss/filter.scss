@@ -1,0 +1,184 @@
+.filter {
+  height: 75px;
+  padding-left: 21px;
+  background: $bg-color-2;
+  border-top: 1px solid $color-secondary;
+  border-bottom: 1px solid $color-secondary;
+}
+.filter__label {
+  margin-top: 13px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: $font-size;
+  line-height: 16px;
+  color: $color-main;
+}
+
+.filter__url {
+  background: $bg-color-1;
+  border: 1px solid $color-secondary;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 30px;
+  width: 162px;
+  padding-left: 10px;
+  color: $color-url;
+}
+
+.filter__style {
+  position: relative;
+
+  * {
+    margin-right: 15px;
+  }
+}
+
+.filter__url-pop {
+  position: absolute;
+  display: none;
+  top: 32px;
+  width: 275px;
+  height: 179px;
+  background: $bg-color-1;
+  border: 1px solid $border-color;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.filter__list-pop {
+  font-size: $font-size;
+  line-height: 16px;
+  color: $color-main;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #eaecef;
+}
+
+.filter__item-pop {
+  margin: 20px;
+}
+
+.filter__radio {
+  margin-right: 23px;
+}
+
+.filter__btns {
+  display: flex;
+  height: 38px;
+  padding: 0px 18px;
+  justify-content: space-between;
+  justify-self: center;
+}
+
+.filter__reset-btn {
+  border: 0;
+  background-color: $bg-color-1;
+  color: $color-remove;
+}
+
+.filter__apply-btn {
+  border: 0;
+  background-color: $bg-color-1;
+  font-weight: 500;
+  color: $color-blue;
+}
+
+.filter__type {
+  background: $bg-color-1;
+  border: 1px solid $color-secondary;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 30px;
+  width: 162px;
+  font-size: $font-size;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: $color-result;
+  padding-left: 12px;
+}
+
+.filter__submitted {
+  background: $bg-color-1;
+  border: 1px solid $color-secondary;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 30px;
+  width: 162px;
+  font-size: $font-size;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: $color-result;
+  padding-left: 17px;
+}
+
+.filter__calendar {
+  background: $bg-color-1;
+  border: 1px solid $color-secondary;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 30px;
+  width: 162px;
+  padding-left: 28px;
+  color: $color-main;
+}
+
+.filter__calendar-img {
+  position: absolute;
+  width: 12px;
+  margin: 9px;
+}
+
+.filter__status {
+  display: inline-block;
+  background: $bg-color-1;
+  border: 1px solid $color-secondary;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: $color-result;
+  padding-left: 17px;
+  height: 30px;
+  width: 150px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.filter__status::after {
+  content: " ";
+  width: 10px;
+  height: 2px;
+  position: absolute;
+  background: $color-secondary;
+}
+
+.filter__status-pop {
+  position: absolute;
+  display: none;
+  top: 32px;
+  right: -10px;
+  width: 169px;
+  background: $bg-color-1;
+  border: 1px solid $border-color;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 8px rgba(162, 164, 169, 0.46);
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.filter__errors-pop {
+  font-family: $main-font;
+
+  padding: 11px 19px;
+  font-size: $font-size;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: $color-result;
+
+  &:hover {
+    background: $color-filter-hover;
+  }
+}
